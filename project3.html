@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project 3 - Branding Popcorn BangJes</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+      radial-gradient(circle at top left, rgba(37,99,235,0.35), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(129,140,248,0.35), transparent 35%),
+      linear-gradient(135deg, #020617, #0f172a, #1e1b4b);
+      color: #f8fafc;
+      padding: 50px 20px;
+      overflow-x: hidden;
+    }
+
+    body::before{
+      content: "";
+      position: fixed;
+      width: 430px;
+      height: 430px;
+      background: rgba(37,99,235,0.18);
+      border-radius: 50%;
+      top: 90px;
+      left: -150px;
+      filter: blur(55px);
+      z-index: -1;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+    }
+
+    body::after{
+      content: "";
+      position: fixed;
+      width: 390px;
+      height: 390px;
+      background: rgba(129,140,248,0.16);
+      border-radius: 50%;
+      bottom: 40px;
+      right: -130px;
+      filter: blur(55px);
+      z-index: -1;
+      animation: floatGlow 9s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatGlow{
+      from{
+        transform: translateY(0);
+      }
+      to{
+        transform: translateY(45px);
+      }
+    }
+
+    .container{
+      width: 92%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 35px;
+      align-items: center;
+      margin-bottom: 80px;
+      animation: fadeUp 0.9s ease;
+    }
+
+    .hero-text{
+      background: rgba(15, 23, 42, 0.84);
+      border: 1px solid rgba(96,165,250,0.25);
+      border-radius: 30px;
+      padding: 48px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+      backdrop-filter: blur(15px);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .hero-text::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      top: 0;
+      left: 0;
+    }
+
+    .hero-text::after{
+      content: "BANGJES";
+      position: absolute;
+      right: 25px;
+      bottom: -18px;
+      font-size: 78px;
+      font-weight: bold;
+      color: rgba(96,165,250,0.05);
+    }
+
+    .hero-text:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 22px 55px rgba(37,99,235,0.28);
+    }
+
+    .label{
+      display: inline-block;
+      background: rgba(37,99,235,0.22);
+      color: #bfdbfe;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-bottom: 18px;
+      border: 1px solid rgba(147,197,253,0.35);
+      letter-spacing: 1px;
+      font-size: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1{
+      font-size: 54px;
+      line-height: 1.15;
+      margin-bottom: 22px;
+      color: #f8fafc;
+      text-shadow: 0 8px 25px rgba(0,0,0,0.45);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text p{
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.85;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand-points{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .point{
+      padding: 10px 15px;
+      background: rgba(37,99,235,0.18);
+      border: 1px solid rgba(96,165,250,0.25);
+      border-radius: 999px;
+      color: #bfdbfe;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .point:hover{
+      transform: translateY(-4px);
+      background: rgba(37,99,235,0.28);
+    }
+
+    .hero-logo{
+      background: rgba(15, 23, 42, 0.84);
+      border: 1px solid rgba(96,165,250,0.25);
+      border-radius: 30px;
+      padding: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+      backdrop-filter: blur(15px);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .hero-logo::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      top: 0;
+      left: 0;
+    }
+
+    .hero-logo::after{
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(37,99,235,0.13);
+      border-radius: 50%;
+      right: -60px;
+      bottom: -60px;
+      transition: 0.35s;
+    }
+
+    .hero-logo:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 22px 55px rgba(37,99,235,0.28);
+    }
+
+    .hero-logo:hover::after{
+      transform: scale(1.6);
+      background: rgba(129,140,248,0.18);
+    }
+
+    .hero-logo img{
+      width: 100%;
+      max-width: 360px;
+      border-radius: 24px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+      transition: 0.4s;
+    }
+
+    .hero-logo:hover img{
+      transform: scale(1.04) rotate(1deg);
+    }
+
+    section{
+      margin-top: 80px;
+      animation: fadeUp 1s ease;
+    }
+
+    section h2{
+      font-size: 40px;
+      margin-bottom: 32px;
+      position: relative;
+      display: inline-block;
+      color: #f8fafc;
+    }
+
+    section h2::after{
+      content: "";
+      width: 60%;
+      height: 5px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 10px;
+    }
+
+    .description-card{
+      background: rgba(15, 23, 42, 0.84);
+      border: 1px solid rgba(96,165,250,0.22);
+      border-radius: 30px;
+      padding: 42px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.32);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+    }
+
+    .description-card::before{
+      content: "BRAND";
+      position: absolute;
+      right: 35px;
+      bottom: -25px;
+      font-size: 115px;
+      font-weight: bold;
+      color: rgba(96,165,250,0.05);
+    }
+
+    .description-card p{
+      color: #cbd5e1;
+      font-size: 17px;
+      line-height: 1.9;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .menu-card{
+      background: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(96,165,250,0.22);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.32);
+      transition: 0.35s;
+      position: relative;
+      backdrop-filter: blur(14px);
+    }
+
+    .menu-card::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      top: 0;
+      left: 0;
+      z-index: 3;
+    }
+
+    .menu-card::after{
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(37,99,235,0.12);
+      border-radius: 50%;
+      right: -45px;
+      bottom: -45px;
+      transition: 0.35s;
+      z-index: 0;
+    }
+
+    .menu-card:hover{
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 24px 55px rgba(37,99,235,0.28);
+      border-color: rgba(147,197,253,0.42);
+    }
+
+    .menu-card:hover::after{
+      transform: scale(1.7);
+      background: rgba(129,140,248,0.18);
+    }
+
+    .image-box{
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+    }
+
+    .image-box img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: 0.45s;
+      filter: brightness(0.9);
+    }
+
+    .menu-card:hover .image-box img{
+      transform: scale(1.08);
+      filter: brightness(1.08);
+    }
+
+    .image-box::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.95), transparent 65%);
+    }
+
+    .flavour-tag{
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 4;
+      padding: 8px 13px;
+      background: rgba(15,23,42,0.78);
+      border: 1px solid rgba(147,197,253,0.35);
+      border-radius: 999px;
+      color: #bfdbfe;
+      font-size: 13px;
+      font-weight: bold;
+      backdrop-filter: blur(8px);
+    }
+
+    .menu-content{
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-content h3{
+      font-size: 25px;
+      margin-bottom: 12px;
+      color: #f8fafc;
+    }
+
+    .menu-content p{
+      font-size: 15px;
+      line-height: 1.7;
+      color: #cbd5e1;
+    }
+
+    .video-box{
+      background: rgba(15, 23, 42, 0.84);
+      border: 1px solid rgba(96,165,250,0.22);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.32);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+    }
+
+    .video-box::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      top: 0;
+      left: 0;
+    }
+
+    video{
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+    }
+
+    .button-area{
+      text-align: center;
+      margin-top: 55px;
+      animation: fadeUp 1.1s ease;
+    }
+
+    .btn{
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(to right, #2563eb, #4f46e5);
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.38);
+    }
+
+    .btn:hover{
+      transform: scale(1.06);
+      box-shadow: 0 10px 30px rgba(99,102,241,0.5);
+    }
+
+    footer{
+      text-align: center;
+      margin-top: 55px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    footer span{
+      color: #818cf8;
+      font-weight: bold;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown{
+      from{
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 1000px){
+
+      .hero{
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    @media(max-width: 650px){
+
+      body{
+        padding: 35px 15px;
+      }
+
+      .hero-text{
+        padding: 32px;
+      }
+
+      .hero-text h1{
+        font-size: 38px;
+      }
+
+      section h2{
+        font-size: 30px;
+      }
+
+      .description-card{
+        padding: 30px;
+      }
+
+      .menu-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .image-box{
+        height: 260px;
+      }
+
+      .hero-logo{
+        padding: 28px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+
+      <div class="hero-text">
+        <span class="label">Project 3</span>
+
+        <h1>Website Branding Popcorn BangJes</h1>
+
+        <p>
+          Project ini merupakan website branding produk popcorn bernama BangJes.
+          Website ini dibuat untuk memperkenalkan identitas brand, varian rasa,
+          tampilan produk, dan media promosi secara menarik.
+        </p>
+
+        <p>
+          Melalui website ini, pengunjung dapat melihat konsep visual dari brand
+          popcorn BangJes, mulai dari logo, daftar menu, sampai video branding
+          yang dibuat sebagai bagian dari promosi produk.
+        </p>
+
+        <div class="brand-points">
+          <span class="point">Branding Produk</span>
+          <span class="point">Varian Rasa</span>
+          <span class="point">Video Promosi</span>
+        </div>
+      </div>
+
+      <div class="hero-logo">
+        <img src="logo.png" alt="Logo Popcorn BangJes">
+      </div>
+
+    </div>
+
+    <section>
+
+      <h2>Deskripsi Project</h2>
+
+      <div class="description-card">
+        <p>
+          Website branding popcorn ini dibuat menggunakan HTML dan CSS dengan
+          tampilan yang modern, rapi, dan mudah dibaca. Tujuan utama project ini
+          adalah menampilkan produk popcorn BangJes sebagai brand makanan ringan
+          yang menarik untuk dilihat oleh calon pembeli.
+        </p>
+
+        <p>
+          Di dalam website ini terdapat informasi mengenai produk, visual logo,
+          beberapa varian rasa popcorn, serta video branding. Project ini juga
+          melatih kemampuan dalam menyusun layout, mengatur gambar, warna,
+          typography, dan membuat halaman website yang responsive.
+        </p>
+
+        <p>
+          Dengan adanya website ini, brand popcorn BangJes terlihat lebih
+          profesional karena memiliki media digital sederhana untuk memperkenalkan
+          produk kepada orang lain.
+        </p>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h2>Varian Rasa Popcorn</h2>
+
+      <div class="menu-grid">
+
+        <div class="menu-card">
+
+          <div class="image-box">
+            <img src="ASIN.jpeg" alt="Popcorn Asin">
+            <span class="flavour-tag">Gurih</span>
+          </div>
+
+          <div class="menu-content">
+            <h3>Popcorn Asin</h3>
+            <p>
+              Varian rasa klasik dengan cita rasa gurih yang cocok untuk
+              dinikmati saat santai atau menonton film.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-card">
+
+          <div class="image-box">
+            <img src="KARAMEL.jpeg" alt="Popcorn Karamel">
+            <span class="flavour-tag">Manis</span>
+          </div>
+
+          <div class="menu-content">
+            <h3>Popcorn Karamel</h3>
+            <p>
+              Popcorn manis dengan rasa karamel yang renyah, cocok untuk
+              pembeli yang menyukai camilan manis.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-card">
+
+          <div class="image-box">
+            <img src="COKELAT.jpeg" alt="Popcorn Cokelat">
+            <span class="flavour-tag">Cokelat</span>
+          </div>
+
+          <div class="menu-content">
+            <h3>Popcorn Cokelat</h3>
+            <p>
+              Varian rasa cokelat yang menarik dan lezat, memberikan kesan
+              modern pada produk popcorn BangJes.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-card">
+
+          <div class="image-box">
+            <img src="KEU.jpeg" alt="Popcorn Keju">
+            <span class="flavour-tag">Creamy</span>
+          </div>
+
+          <div class="menu-content">
+            <h3>Popcorn Keju</h3>
+            <p>
+              Popcorn dengan rasa keju yang gurih dan creamy, cocok untuk
+              pecinta makanan ringan dengan rasa kuat.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+
+      <h2>Video Branding</h2>
+
+      <div class="video-box">
+        <video controls>
+          <source src="branding.mp4" type="video/mp4">
+          Browser kamu tidak mendukung video.
+        </video>
+      </div>
+
+    </section>
+
+    <div class="button-area">
+      <a href="index.html" class="btn">← Kembali ke Halaman Utama</a>
+    </div>
+
+    <footer>
+      © 2026 <span>Gala</span> | Project Branding Popcorn BangJes
+    </footer>
+
+  </div>
+
+  <script>
+    console.log("Project 3 Branding Popcorn BangJes berhasil dijalankan!");
+  </script>
+
+</body>
+</html>

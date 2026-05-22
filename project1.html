@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project 1 - Biodata Diri</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+      radial-gradient(circle at top left, rgba(37,99,235,0.35), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(129,140,248,0.35), transparent 35%),
+      linear-gradient(135deg, #020617, #0f172a, #1e1b4b);
+      color: #f8fafc;
+      padding: 50px 20px;
+      overflow-x: hidden;
+    }
+
+    body::before{
+      content: "";
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      background: rgba(37,99,235,0.18);
+      border-radius: 50%;
+      top: 80px;
+      left: -140px;
+      filter: blur(55px);
+      z-index: -1;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+    }
+
+    body::after{
+      content: "";
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      background: rgba(129,140,248,0.16);
+      border-radius: 50%;
+      bottom: 40px;
+      right: -120px;
+      filter: blur(55px);
+      z-index: -1;
+      animation: floatGlow 9s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatGlow{
+      from{
+        transform: translateY(0);
+      }
+      to{
+        transform: translateY(45px);
+      }
+    }
+
+    .container{
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .title{
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeDown 0.8s ease;
+    }
+
+    .label{
+      display: inline-block;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.22);
+      border: 1px solid rgba(147,197,253,0.35);
+      color: #bfdbfe;
+      font-weight: bold;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+
+    .title h1{
+      font-size: 58px;
+      margin-bottom: 12px;
+      letter-spacing: 4px;
+      color: #f8fafc;
+      text-shadow: 0 8px 25px rgba(0,0,0,0.45);
+    }
+
+    .title p{
+      color: #cbd5e1;
+      font-size: 19px;
+    }
+
+    .top-content{
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+      align-items: stretch;
+      animation: fadeUp 0.9s ease;
+    }
+
+    .photo-card{
+      flex: 1;
+      min-width: 290px;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 20px;
+      border: 1px solid rgba(96,165,250,0.25);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .photo-card::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 7px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      top: 0;
+      left: 0;
+    }
+
+    .photo-card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 22px 55px rgba(37,99,235,0.28);
+    }
+
+    .photo-card img{
+      width: 100%;
+      height: 100%;
+      max-height: 430px;
+      object-fit: cover;
+      border-radius: 22px;
+      display: block;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    }
+
+    .info-card{
+      flex: 2;
+      min-width: 300px;
+      background: rgba(15, 23, 42, 0.84);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 42px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+      border: 1px solid rgba(96,165,250,0.25);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s;
+    }
+
+    .info-card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 22px 55px rgba(37,99,235,0.28);
+    }
+
+    .info-card::after{
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: rgba(37,99,235,0.13);
+      border-radius: 50%;
+      right: -50px;
+      bottom: -50px;
+    }
+
+    .info-card h2{
+      font-size: 36px;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+      color: #f8fafc;
+      z-index: 2;
+    }
+
+    .info-card h2::after{
+      content: "";
+      width: 65%;
+      height: 5px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 10px;
+    }
+
+    .info-card p{
+      margin-bottom: 19px;
+      line-height: 1.9;
+      color: #e2e8f0;
+      font-size: 17px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .info-list{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 13px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .info-badge{
+      background: rgba(37,99,235,0.18);
+      border: 1px solid rgba(96,165,250,0.25);
+      padding: 12px 15px;
+      border-radius: 15px;
+      color: #bfdbfe;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .info-badge:hover{
+      transform: translateY(-4px);
+      background: rgba(37,99,235,0.28);
+    }
+
+    .reflection-card{
+      background: rgba(15, 23, 42, 0.84);
+      color: #e2e8f0;
+      border-radius: 30px;
+      padding: 42px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.32);
+      border: 1px solid rgba(96,165,250,0.22);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 1s ease;
+    }
+
+    .reflection-card::before{
+      content: "HTML";
+      position: absolute;
+      right: 35px;
+      bottom: -25px;
+      font-size: 110px;
+      font-weight: bold;
+      color: rgba(96,165,250,0.05);
+    }
+
+    .reflection-card h2{
+      margin-bottom: 28px;
+      font-size: 34px;
+      color: #f8fafc;
+      position: relative;
+      display: inline-block;
+    }
+
+    .reflection-card h2::after{
+      content: "";
+      width: 65%;
+      height: 5px;
+      background: linear-gradient(to right, #2563eb, #818cf8, #38bdf8);
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 10px;
+    }
+
+    .reflection-card p{
+      margin-bottom: 18px;
+      line-height: 1.9;
+      font-size: 17px;
+      color: #cbd5e1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .button-area{
+      text-align: center;
+      margin-top: 50px;
+      animation: fadeUp 1.1s ease;
+    }
+
+    .btn{
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(to right, #2563eb, #4f46e5);
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.38);
+    }
+
+    .btn:hover{
+      transform: scale(1.06);
+      box-shadow: 0 10px 30px rgba(99,102,241,0.5);
+    }
+
+    footer{
+      text-align: center;
+      margin-top: 55px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    footer span{
+      color: #818cf8;
+      font-weight: bold;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown{
+      from{
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 768px){
+
+      body{
+        padding: 35px 15px;
+      }
+
+      .title h1{
+        font-size: 40px;
+        letter-spacing: 2px;
+      }
+
+      .title p{
+        font-size: 16px;
+      }
+
+      .info-card,
+      .reflection-card{
+        padding: 30px;
+      }
+
+      .info-card h2,
+      .reflection-card h2{
+        font-size: 28px;
+      }
+
+      .photo-card img{
+        max-height: 360px;
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="title">
+      <span class="label">Project 1</span>
+      <h1>BIODATA DIRI</h1>
+      <p>Website Biodata Siswa | HTML dan CSS</p>
+    </div>
+
+    <div class="top-content">
+
+      <div class="photo-card">
+        <img src="apres.jpeg" alt="Foto Gala">
+      </div>
+
+      <div class="info-card">
+
+        <h2>Informasi Pribadi</h2>
+
+        <div class="info-list">
+          <div class="info-badge">XI-S8</div>
+          <div class="info-badge">Kolese Kanisius</div>
+          <div class="info-badge">Sepak Bola</div>
+          <div class="info-badge">Business Man</div>
+        </div>
+
+        <p>
+          Nama saya adalah Gala, siswa kelas XI dari Kolese Kanisius Jakarta.
+          Saya memiliki minat dalam bidang teknologi, bisnis, dan olahraga.
+        </p>
+
+        <p>
+          Saat ini saya sedang mempelajari HTML, CSS, dan JavaScript untuk
+          membuat website yang modern, menarik, dan interaktif.
+        </p>
+
+        <p>
+          Dalam keseharian, saya memiliki hobi bermain sepak bola dan senang
+          mencoba hal-hal baru yang dapat meningkatkan kreativitas dan kemampuan
+          berpikir saya.
+        </p>
+
+        <p>
+          Saya bercita-cita menjadi seorang Business Man yang sukses dan mampu
+          membangun usaha yang bermanfaat bagi banyak orang di masa depan.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="reflection-card">
+
+      <h2>Deskripsi Project</h2>
+
+      <p>
+        Project ini dibuat sebagai latihan pembuatan website menggunakan HTML
+        dan CSS. Pada project ini saya membuat halaman biodata diri dengan
+        tampilan modern dan responsive.
+      </p>
+
+      <p>
+        Dalam pembuatan website ini, saya belajar bagaimana mengatur layout,
+        warna, gambar, dan typography agar tampilan website menjadi lebih rapi
+        dan nyaman dilihat.
+      </p>
+
+      <p>
+        Saya juga belajar mengenai penggunaan card layout, flexbox, serta desain
+        responsive agar website dapat dibuka dengan baik di laptop maupun HP.
+      </p>
+
+      <p>
+        Melalui project ini, saya menjadi lebih memahami dasar-dasar pembuatan
+        website dan semakin tertarik untuk mempelajari dunia pemrograman web.
+      </p>
+
+    </div>
+
+    <div class="button-area">
+
+      <a href="index.html" class="btn">
+        ← Kembali ke Halaman Utama
+      </a>
+
+    </div>
+
+    <footer>
+      © 2026 <span>Gala</span> | Project Biodata Diri
+    </footer>
+
+  </div>
+
+  <script>
+    console.log("Project 1 Biodata berhasil dijalankan!");
+  </script>
+
+</body>
+</html>
